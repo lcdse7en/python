@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+scrapy startproject xxxPro   \PYG{c+c1}{\PYGZsh{} 创建一个工程}
+\PYG{n+nb}{cd} xxxPro
+scrapy genspider \PYGZhy{}t crawl xxx www.xxx.com
+\PYG{c+c1}{\PYGZsh{} run:}
+scrapy crawl sun
+\end{Verbatim}

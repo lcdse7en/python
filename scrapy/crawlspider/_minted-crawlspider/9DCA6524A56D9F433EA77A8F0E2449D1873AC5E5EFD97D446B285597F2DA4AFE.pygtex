@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{n}{USER\PYGZus{}AGENT} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}Mozilla/5.0 (X11; Linux x86\PYGZus{}64) AppleWebKit/537.36 (KHTML, like Gecko) }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{l+s+s1}{                                                Chrome/101.0.4951.64 Safari/537.36\PYGZsq{}}
+\PYG{n}{ROBOTSTXT\PYGZus{}OBEY} \PYG{o}{=} \PYG{n+nb+bp}{False}
+\PYG{n}{LOG\PYGZus{}LEVEL} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}ERROR\PYGZsq{}}
+\end{Verbatim}

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kn}{import} \PYG{n+nn}{scrapy}
+
+\PYG{k}{class} \PYG{n+nc}{SunproItem}\PYG{p}{(}\PYG{n}{scrapy}\PYG{o}{.}\PYG{n}{Item}\PYG{p}{):}
+    \PYG{n}{title} \PYG{o}{=} \PYG{n}{scrapy}\PYG{o}{.}\PYG{n}{Field}\PYG{p}{()}
+    \PYG{n}{new\PYGZus{}num} \PYG{o}{=} \PYG{n}{scrapy}\PYG{o}{.}\PYG{n}{Field}\PYG{p}{()}
+
+\PYG{k}{class} \PYG{n+nc}{DetailItem}\PYG{p}{(}\PYG{n}{scrapy}\PYG{o}{.}\PYG{n}{Item}\PYG{p}{):}
+    \PYG{n}{new\PYGZus{}id} \PYG{o}{=} \PYG{n}{scrapy}\PYG{o}{.}\PYG{n}{Field}\PYG{p}{()}
+    \PYG{n}{content} \PYG{o}{=} \PYG{n}{scrapy}\PYG{o}{.}\PYG{n}{Field}\PYG{p}{()}
+\end{Verbatim}
