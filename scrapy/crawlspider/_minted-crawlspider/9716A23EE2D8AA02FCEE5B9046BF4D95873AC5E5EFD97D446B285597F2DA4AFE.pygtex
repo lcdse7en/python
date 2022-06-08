@@ -3,4 +3,8 @@
 \PYG{l+s+s1}{                                                Chrome/101.0.4951.64 Safari/537.36\PYGZsq{}}
 \PYG{n}{ROBOTSTXT\PYGZus{}OBEY} \PYG{o}{=} \PYG{n+nb+bp}{False}
 \PYG{n}{LOG\PYGZus{}LEVEL} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}ERROR\PYGZsq{}}
+
+\PYG{n}{ITEM\PYGZus{}PIPELINES} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+    \PYG{l+s+s1}{\PYGZsq{}qiubaiPro.pipelines.QiubaiproPipeline\PYGZsq{}}\PYG{p}{:} \PYG{l+m+mi}{300}\PYG{p}{,}
+\PYG{p}{\PYGZcb{}}
 \end{Verbatim}

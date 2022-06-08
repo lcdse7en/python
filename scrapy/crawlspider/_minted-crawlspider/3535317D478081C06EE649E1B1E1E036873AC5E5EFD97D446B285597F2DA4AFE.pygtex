@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{class} \PYG{n+nc}{SunproPipeline}\PYG{p}{(}\PYG{n+nb}{object}\PYG{p}{):}
+    \PYG{n}{conn} \PYG{o}{=} \PYG{n+nb+bp}{None}
+    \PYG{k}{def} \PYG{n+nf}{open\PYGZus{}spider}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,}\PYG{n}{spider}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{conn} \PYG{o}{=} \PYG{n}{spider}\PYG{o}{.}\PYG{n}{conn}
+    \PYG{k}{def} \PYG{n+nf}{process\PYGZus{}item}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{item}\PYG{p}{,} \PYG{n}{spider}\PYG{p}{):}
+        \PYG{n}{dic} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+            \PYG{l+s+s1}{\PYGZsq{}name\PYGZsq{}}\PYG{p}{:} \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}name\PYGZsq{}}\PYG{p}{],}
+            \PYG{l+s+s1}{\PYGZsq{}desc\PYGZsq{}}\PYG{p}{:} \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}desc\PYGZsq{}}\PYG{p}{]}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{print}\PYG{p}{(}\PYG{n}{dic}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{conn}\PYG{o}{.}\PYG{n}{lpush}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}movieData\PYGZsq{}}\PYG{p}{,}\PYG{n}{dic}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{item}
+\end{Verbatim}

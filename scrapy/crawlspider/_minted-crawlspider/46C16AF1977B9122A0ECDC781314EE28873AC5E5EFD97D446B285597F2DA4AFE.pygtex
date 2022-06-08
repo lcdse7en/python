@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kn}{from} \PYG{n+nn}{scrapy.linkextractors} \PYG{k+kn}{import} \PYG{n}{LinkExtractor}
+\PYG{k+kn}{from} \PYG{n+nn}{scrapy.spiders} \PYG{k+kn}{import} \PYG{n}{CrawlSpider}\PYG{p}{,} \PYG{n}{Rule}
+\PYG{k+kn}{from} \PYG{n+nn}{sunPro.items} \PYG{k+kn}{import} \PYG{n}{SunproItem}\PYG{p}{,} \PYG{n}{DetailItem}
+\PYG{k+kn}{from} \PYG{n+nn}{redis} \PYG{k+kn}{import} \PYG{n}{Redis}
+\PYG{k+kn}{from} \PYG{n+nn}{moviePro.items} \PYG{k+kn}{import} \PYG{n}{MovieproItem}
+
+\PYG{k}{class} \PYG{n+nc}{MovieSpider}\PYG{p}{(}\PYG{n}{CrawlSpider}\PYG{p}{):}
+    \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}movie\PYGZsq{}}
+    \PYG{c+c1}{\PYGZsh{} allowed\PYGZus{}domains = [\PYGZsq{}www.xxx.com\PYGZsq{}]}
+    \PYG{n}{start\PYGZus{}urls} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}http://www.xxx.com\PYGZsq{}}\PYG{p}{]}
+    \PYG{c+c1}{\PYGZsh{} 链接提取器:根据指定规则进行指定链接的提取}
+    \PYG{n}{link} \PYG{o}{=} \PYG{n}{LinkExtractor}\PYG{p}{(}\PYG{n}{allow}\PYG{o}{=}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}type=4\PYGZam{}page=\PYGZbs{}d+\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{link\PYGZus{}detail} \PYG{o}{=} \PYG{n}{LinkExtractor}\PYG{p}{(}\PYG{n}{allow}\PYG{o}{=}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}question/\PYGZbs{}d+/\PYGZbs{}d+\PYGZbs{}.html\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} 规则解析器}
+    \PYG{n}{rules} \PYG{o}{=} \PYG{p}{(}
+        \PYG{n}{Rule}\PYG{p}{(}\PYG{n}{link}\PYG{p}{,} \PYG{n}{callback}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}parse\PYGZus{}item\PYGZsq{}}\PYG{p}{,} \PYG{n}{follow}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)}
+        \PYG{n}{Rule}\PYG{p}{(}\PYG{n}{link\PYGZus{}detail}\PYG{p}{,} \PYG{n}{callback}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}parse\PYGZus{}detail\PYGZsq{}}\PYG{p}{,} \PYG{n}{follow}\PYG{o}{=}\PYG{n+nb+bp}{False}\PYG{p}{)}
+    \PYG{p}{)}
+
+    \PYG{n}{conn} \PYG{o}{=} \PYG{n}{Redis}\PYG{p}{(}\PYG{n}{host}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}127.0.0.1\PYGZsq{}}\PYG{p}{,} \PYG{n}{port}\PYG{o}{=}\PYG{l+m+mi}{6379}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{parse\PYGZus{}item}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{response}\PYG{p}{):}
+        \PYG{n}{tr\PYGZus{}list} \PYG{o}{=} \PYG{n}{response}\PYG{o}{.}\PYG{n}{xpath}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}//*[@id=\PYGZdq{}morelist\PYGZdq{}]/div//table/tr\PYGZsq{}}\PYG{p}{)}
+        \PYG{k}{for} \PYG{n}{li} \PYG{o+ow}{in} \PYG{n}{li\PYGZus{}list}\PYG{p}{:}
+            \PYG{n}{detail\PYGZus{}url} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}https://www.xxx.com\PYGZsq{}} \PYG{o}{+} \PYG{n}{li}\PYG{o}{.}\PYG{n}{xpath}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}./div/a/@href\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{extract\PYGZus{}first}
+            \PYG{n}{ex} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{conn}\PYG{o}{.}\PYG{n}{sadd}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}urls\PYGZsq{}}\PYG{p}{,} \PYG{n}{detail\PYGZus{}url}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n}{ex} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+                \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}This url unaware to scrapy\PYGZsq{}}\PYG{p}{)}
+                \PYG{k}{yield} \PYG{n}{scrapy}\PYG{o}{.}\PYG{n}{Request}\PYG{p}{(}\PYG{n}{url}\PYG{o}{=}\PYG{n}{detail\PYGZus{}url}\PYG{p}{,} \PYG{n}{callback}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{parst\PYGZus{}detail}\PYG{p}{)}
+            \PYG{k}{else}\PYG{p}{:}
+                \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}NDU\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{parse\PYGZus{}detail}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,}\PYG{n}{response}\PYG{p}{):}
+        \PYG{n}{item} \PYG{o}{=} \PYG{n}{MovieproItem}\PYG{p}{()}
+        \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}name\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{response}\PYG{o}{.}\PYG{n}{xpath}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}/html//h1/text()\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{extract\PYGZus{}first}
+        \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}desc\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{response}\PYG{o}{.}\PYG{n}{xpath}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}/html//p[5]/span/text()\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{extrct}
+        \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}desc\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}desc\PYGZsq{}}\PYG{p}{])}
+
+        \PYG{k}{yield} \PYG{n}{item}
+\end{Verbatim}
