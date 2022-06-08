@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{\PYGZsh{} 原生的scrapy不能实现分布式和增量式爬虫，要实现此功能要结合scrapy\PYGZhy{}redis组件}
+
+\PYGZdl{} sadd name urls
+\PYGZhy{}\PYGZgt{} \PYG{o}{(}integer\PYG{o}{)} \PYG{l+m}{1}
+
+\PYGZdl{} keys *
+\PYGZhy{}\PYGZgt{} \PYG{o}{(}\PYG{l+m}{1}\PYG{o}{)} \PYG{l+s+s1}{\PYGZsq{}urls\PYGZsq{}}
+\PYGZhy{}\PYGZgt{} \PYG{o}{(}\PYG{l+m}{2}\PYG{o}{)} \PYG{l+s+s1}{\PYGZsq{}movieData\PYGZsq{}}
+
+\PYGZdl{} flushall
+\PYGZhy{}\PYGZgt{} OK
+\end{Verbatim}

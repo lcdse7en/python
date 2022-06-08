@@ -19,6 +19,7 @@
         \PYG{n}{Rule}\PYG{p}{(}\PYG{n}{link\PYGZus{}detail}\PYG{p}{,} \PYG{n}{callback}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}parse\PYGZus{}detail\PYGZsq{}}\PYG{p}{,} \PYG{n}{follow}\PYG{o}{=}\PYG{n+nb+bp}{False}\PYG{p}{)}
     \PYG{p}{)}
 
+    \PYG{c+c1}{\PYGZsh{} 创建redis链接对象}
     \PYG{n}{conn} \PYG{o}{=} \PYG{n}{Redis}\PYG{p}{(}\PYG{n}{host}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}127.0.0.1\PYGZsq{}}\PYG{p}{,} \PYG{n}{port}\PYG{o}{=}\PYG{l+m+mi}{6379}\PYG{p}{)}
 
     \PYG{k}{def} \PYG{n+nf}{parse\PYGZus{}item}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{response}\PYG{p}{):}
@@ -30,7 +31,7 @@
                 \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}This url unaware to scrapy\PYGZsq{}}\PYG{p}{)}
                 \PYG{k}{yield} \PYG{n}{scrapy}\PYG{o}{.}\PYG{n}{Request}\PYG{p}{(}\PYG{n}{url}\PYG{o}{=}\PYG{n}{detail\PYGZus{}url}\PYG{p}{,} \PYG{n}{callback}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{parst\PYGZus{}detail}\PYG{p}{)}
             \PYG{k}{else}\PYG{p}{:}
-                \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}NDU\PYGZsq{}}\PYG{p}{)}
+                \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}No Data Updata\PYGZsq{}}\PYG{p}{)}
 
     \PYG{k}{def} \PYG{n+nf}{parse\PYGZus{}detail}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,}\PYG{n}{response}\PYG{p}{):}
         \PYG{n}{item} \PYG{o}{=} \PYG{n}{MovieproItem}\PYG{p}{()}

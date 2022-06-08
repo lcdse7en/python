@@ -1,0 +1,142 @@
+\documentclass[a4paper]{ctexart}    %ctexart, article
+\usepackage[margin=1cm]{geometry}
+\usepackage{graphicx} % 插图
+\usepackage{subfigure} % 子图包
+\usepackage{amsmath, mathrsfs, amsfonts}
+\usepackage{amssymb} % 更多公式符号
+\usepackage{physics} % 公式输入便捷命令
+\usepackage{hyperref} % 超链接
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan
+}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{minted}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{array}
+\usepackage{booktabs} % 调整表格线与上下内容的间隔
+
+
+\begin{document}
+\begin{tcolorbox}[
+         colback=red!5!white,
+         colframe=teal,
+         title=\textbf{Install Seaborn}
+    ]
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=0,
+               frame=lines,
+               framesep=2mm]{bash}
+pip3 install scipy
+pip3 install seaborn
+\end{minted}
+\end{tcolorbox}
+
+\newpage
+\begin{tcolorbox}[
+         colback=red!5!white,
+         colframe=teal,
+         title=\textbf{seaborn (堆叠)柱状图1/2}
+    ]
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=0,
+               frame=lines,
+               framesep=2mm]{python}
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import numpy as np
+
+# 设置风格样式: darkgrid, whitegrid, dark, white, ticks
+sns.set_style('darkgrid')
+# 解决中文乱码
+plt.rcParams['font.sans-serif'] = ['SimHei']
+
+# ------------------------------------
+#              数据处理
+# ------------------------------------
+# 读取数据
+df = pd.read_excel('xx.xlsx')
+# 根据类别分组，计算每组中买家实际支付金额的总和
+df1 = df.groupby['类别']['买家实际支付金额'].sum()
+# 将消费总金额转成列表
+num = np.array(list[df1])
+
+# 根据类别和性别分组，统计不同买家的人数，并重置索引
+df2 = df.groupby(['类别', '性别'])['买家会员名'].count().reset_index()
+men_df = df2['性别'=='男']
+women_df = df2['性别'=='女']
+
+# 将男性和女性买家数转成列表
+men_list = list(men_df['买家会员名'])
+women_list = list(women_df['买家会员名'])
+
+# 计算男性用户比例
+ratio = np.array(men_list) / (np.array(men_list) + np.array(women_list))
+
+# 设置输出的精度
+np.set_printoptions(precision=2)
+
+# 计算男女性的消费金额
+men = num*ratio
+women = num*(1-ratio)
+
+# 删除重复数据
+df3 = df2.drop_duplicates(['类别'])
+
+# 将类别转成列表
+name = list(df3['类别'])
+\end{minted}
+\end{tcolorbox}
+
+\newpage
+\begin{tcolorbox}[
+         colback=red!5!white,
+         colframe=teal,
+         title=\textbf{seaborn (堆叠)柱状图2/2}
+    ]
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=0,
+               frame=lines,
+               framesep=2mm]{python}
+# ---------------------------------------------------
+#                    开始绘制图表
+# ---------------------------------------------------
+width = 0.5
+x = np.arange(len(name))
+# 男性柱状图
+plt.bar(x, men, width=width, color='slateblue', label='男性用户')
+# 女性柱状图
+plt.bar(x, women, width=width, color='orange', label='女性用户', bottom=men)
+
+# 设置x轴与y轴的标签
+plt.xlabel('消费类别')
+plt.ylabel('男女分布')
+plt.xticks(x, name, rotation=20)
+
+# 在图表上显示数字文本
+for a,b in zip(x,men):
+    plt.text(a,b, '%.0f'%b, ha='center', va='top', fontsize=12)
+for a,b,c in zip(x,women,men):
+    plt.text(a,b+c, '%.0f'%b, ha='center', va='bottom', fontsize=12)
+
+# 添加图例
+plt.legend()
+# 显示图表
+plt.show()
+\end{minted}
+\end{tcolorbox}
+
+\end{document}

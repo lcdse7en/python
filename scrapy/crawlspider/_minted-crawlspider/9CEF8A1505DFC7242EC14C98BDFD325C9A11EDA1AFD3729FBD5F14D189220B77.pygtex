@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
-\PYGZdl{} sadd name urls
-\PYGZhy{}\PYGZgt{} \PYG{o}{(}integer\PYG{o}{)} \PYG{l+m}{1}
-
-\PYGZdl{} flushall
-\PYGZhy{}\PYGZgt{} OK
-\end{Verbatim}

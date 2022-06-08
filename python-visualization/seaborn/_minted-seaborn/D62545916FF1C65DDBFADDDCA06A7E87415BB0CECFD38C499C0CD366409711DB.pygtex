@@ -1,0 +1,46 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.pyplot} \PYG{k+kn}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k+kn}{as} \PYG{n+nn}{sns}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k+kn}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k+kn}{as} \PYG{n+nn}{np}
+
+\PYG{c+c1}{\PYGZsh{} 设置风格样式: darkgrid, whitegrid, dark, white, ticks}
+\PYG{n}{sns}\PYG{o}{.}\PYG{n}{set\PYGZus{}style}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}darkgrid\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} 解决中文乱码}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}font.sans\PYGZhy{}serif\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}SimHei\PYGZsq{}}\PYG{p}{]}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{}              数据处理}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} 读取数据}
+\PYG{n}{df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}excel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}xx.xlsx\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} 根据类别分组，计算每组中买家实际支付金额的总和}
+\PYG{n}{df1} \PYG{o}{=} \PYG{n}{df}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}类别\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}买家实际支付金额\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{()}
+\PYG{c+c1}{\PYGZsh{} 将消费总金额转成列表}
+\PYG{n}{num} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n+nb}{list}\PYG{p}{[}\PYG{n}{df1}\PYG{p}{])}
+
+\PYG{c+c1}{\PYGZsh{} 根据类别和性别分组，统计不同买家的人数，并重置索引}
+\PYG{n}{df2} \PYG{o}{=} \PYG{n}{df}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}类别\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}性别\PYGZsq{}}\PYG{p}{])[}\PYG{l+s+s1}{\PYGZsq{}买家会员名\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{count}\PYG{p}{()}\PYG{o}{.}\PYG{n}{reset\PYGZus{}index}\PYG{p}{()}
+\PYG{n}{men\PYGZus{}df} \PYG{o}{=} \PYG{n}{df2}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}性别\PYGZsq{}}\PYG{o}{==}\PYG{l+s+s1}{\PYGZsq{}男\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{women\PYGZus{}df} \PYG{o}{=} \PYG{n}{df2}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}性别\PYGZsq{}}\PYG{o}{==}\PYG{l+s+s1}{\PYGZsq{}女\PYGZsq{}}\PYG{p}{]}
+
+\PYG{c+c1}{\PYGZsh{} 将男性和女性买家数转成列表}
+\PYG{n}{men\PYGZus{}list} \PYG{o}{=} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{men\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}买家会员名\PYGZsq{}}\PYG{p}{])}
+\PYG{n}{women\PYGZus{}list} \PYG{o}{=} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{women\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}买家会员名\PYGZsq{}}\PYG{p}{])}
+
+\PYG{c+c1}{\PYGZsh{} 计算男性用户比例}
+\PYG{n}{ratio} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{men\PYGZus{}list}\PYG{p}{)} \PYG{o}{/} \PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{men\PYGZus{}list}\PYG{p}{)} \PYG{o}{+} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{women\PYGZus{}list}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} 设置输出的精度}
+\PYG{n}{np}\PYG{o}{.}\PYG{n}{set\PYGZus{}printoptions}\PYG{p}{(}\PYG{n}{precision}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} 计算男女性的消费金额}
+\PYG{n}{men} \PYG{o}{=} \PYG{n}{num}\PYG{o}{*}\PYG{n}{ratio}
+\PYG{n}{women} \PYG{o}{=} \PYG{n}{num}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{ratio}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} 删除重复数据}
+\PYG{n}{df3} \PYG{o}{=} \PYG{n}{df2}\PYG{o}{.}\PYG{n}{drop\PYGZus{}duplicates}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}类别\PYGZsq{}}\PYG{p}{])}
+
+\PYG{c+c1}{\PYGZsh{} 将类别转成列表}
+\PYG{n}{name} \PYG{o}{=} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{df3}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}类别\PYGZsq{}}\PYG{p}{])}
+\end{Verbatim}
