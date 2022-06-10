@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{\PYGZsh{} apply: 用于Series，实现每个值的处理；用于DataFrame，实现每个轴的Series处理}
+\PYG{c+c1}{\PYGZsh{} Series.apply(function), function的参数是每个Series的值}
+\PYG{c+c1}{\PYGZsh{} DataFrame.apply(function), function的参数是对应轴的Series}
+
+\PYG{n}{stocks}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}公司中文\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{stocks}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}公司\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{apply}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{dict\PYGZus{}company\PYGZus{}names}\PYG{p}{[}\PYG{n}{x}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()])}
+\PYG{n}{stocks}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}公司中文\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{stocks}\PYG{o}{.}\PYG{n}{apply}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{dict\PYGZus{}company\PYGZus{}names}\PYG{p}{[}\PYG{n}{x}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}公司\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()],} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+\end{Verbatim}

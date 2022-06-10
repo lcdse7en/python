@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{\PYGZsh{} map: 只能用于Series，实现每个值\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{}值的映射}
+\PYG{c+c1}{\PYGZsh{} Series.map(dict)}
+\PYG{c+c1}{\PYGZsh{} Series.map(function)}
+
+\PYG{n}{stocks}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}公司中文\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{stocks}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}公司\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{str}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{n}{dict\PYGZus{}company\PYGZus{}names}\PYG{p}{)}
+\PYG{n}{stocks}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}公司中文\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{stocks}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}公司\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{dict\PYGZus{}company\PYGZus{}names}\PYG{p}{[}\PYG{n}{x}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()])}
+\end{Verbatim}

@@ -24,7 +24,89 @@
 
 
 \begin{document}
+\begin{tcolorbox}[
+         colback=red!5!white,
+         colframe=teal,
+         title=\textbf{pandas读取和保存文件}
+    ]
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=0,
+               frame=lines,
+               framesep=2mm]{python}
+import pandas as pd
+
+df = pd.read_excel('./data.xlxs', header=0, skiprows=3, usecols="C:F", index_col='ID')
+print(df.shape)
+print(df.columns)
+print(df.head(3))
+print(df.tail(3))
+df.to_excel('./data1.xlxs')
+\end{minted}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+         colback=red!5!white,
+         colframe=teal,
+         title=\textbf{pandas创建数据}
+    ]
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=0,
+               frame=lines,
+               framesep=2mm]{python}
+import pandas as pd
+
+dic_data = {
+    'ID': [1, 2, 3],
+    'Name': ['Tim', 'Victor', 'Tom']
+}
+df = pd.DataFrame(dic_data)
+df = df.set_index('ID')
+df.to_excel('./data.xlsx')
+\end{minted}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+         colback=red!5!white,
+         colframe=teal,
+         title=\textbf{pandas数据转换函数map}
+    ]
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=0,
+               frame=lines,
+               framesep=2mm]{python}
+# map: 只能用于Series，实现每个值--->值的映射
+# Series.map(dict)
+# Series.map(function)
+
+stocks['公司中文'] = stocks['公司'].str.lower().map(dict_company_names)
+stocks['公司中文'] = stocks['公司'].map(lambda x: dict_company_names[x.lower()])
+\end{minted}
+\end{tcolorbox}
 
 
+\begin{tcolorbox}[
+         colback=red!5!white,
+         colframe=teal,
+         title=\textbf{pandas数据转换函数apply}
+    ]
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=0,
+               frame=lines,
+               framesep=2mm]{python}
+# apply: 用于Series，实现每个值的处理；用于DataFrame，实现每个轴的Series处理
+# Series.apply(function), function的参数是每个Series的值
+# DataFrame.apply(function), function的参数是对应轴的Series
 
+stocks['公司中文'] = stocks['公司'].apply(lambda x: dict_company_names[x.lower()])
+stocks['公司中文'] = stocks.apply(lambda x: dict_company_names[x['公司'].lower()], axis=1)
+\end{minted}
+\end{tcolorbox}
 \end{document}

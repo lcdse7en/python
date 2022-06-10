@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k+kn}{as} \PYG{n+nn}{pd}
+
+\PYG{n}{df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}excel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}./data.xlxs\PYGZsq{}}\PYG{p}{,} \PYG{n}{header}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{skiprows}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{usecols}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}C:F\PYGZdq{}}\PYG{p}{,} \PYG{n}{index\PYGZus{}col}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}ID\PYGZsq{}}\PYG{p}{)}
+\PYG{k}{print}\PYG{p}{(}\PYG{n}{df}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+\PYG{k}{print}\PYG{p}{(}\PYG{n}{df}\PYG{o}{.}\PYG{n}{columns}\PYG{p}{)}
+\PYG{k}{print}\PYG{p}{(}\PYG{n}{df}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{))}
+\PYG{k}{print}\PYG{p}{(}\PYG{n}{df}\PYG{o}{.}\PYG{n}{tail}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{))}
+\PYG{n}{df}\PYG{o}{.}\PYG{n}{to\PYGZus{}excel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}./data1.xlxs\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}
