@@ -1,0 +1,88 @@
+\documentclass[a4paper]{ctexart}    %ctexart, article
+\usepackage[margin=1cm]{geometry}
+\usepackage{graphicx} % 插图
+\usepackage{subfigure} % 子图包
+\usepackage{amsmath, mathrsfs, amsfonts}
+\usepackage{amssymb} % 更多公式符号
+\usepackage{physics} % 公式输入便捷命令
+\usepackage{hyperref} % 超链接
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan
+}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{minted}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{array}
+\usepackage{booktabs} % 调整表格线与上下内容的间隔
+
+
+\begin{document}
+\begin{tcolorbox}[
+         colback=red!5!white,
+         colframe=teal,
+         title=\textbf{字符串}
+    ]
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=0,
+               frame=lines,
+               framesep=2mm]{python}
+# 1.字符串格式化--千分位分隔语法
+'{:,.2f}'.format(1314.256)
+
+# 2.将列表转化为字符串
+str1 = ''.join(list1)
+
+# 3.更改字符串
+str1 = str1.replace('mm', 'xx')
+\end{minted}
+\end{tcolorbox}
+
+\newpage
+\begin{tcolorbox}[
+         colback=red!5!white,
+         colframe=teal,
+         title=\textbf{zip}
+    ]
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=0,
+               frame=lines,
+               framesep=2mm]{python}
+# 内置的zip函数允许使用for循环并行访问多个序列；
+# zip的输入参数是一个或多个序列，它的返回值是将这些序列并排的元素配对得到元组的列表；
+# 在Python3中zip返回的是一个可迭代对象，要想显示结果需要将其包含在list调用中。
+
+l1 = [1, 2, 3, 4]
+l1 = [5, 6, 7, 8]
+zip(l1, l2)
+-> <zip object at 0x02623C8>
+list(zip(l1,l2))
+-> [(1,5),(2,6),(3,7),(4,8)]
+
+for (x,y) in zip(l1,l2):
+    print(x,y,'--',x+y)
+
+# 使用zip构造字典 ---- for循环
+keys = ['spam','eggs','toast']
+vals = [1,3,5]
+D1={}
+for (k,v) in zip(keys, vals):
+    D1[k] = v
+
+# 使用zip构造字典 ---- 字典推导
+{k: v for (k, v) in zip(keys, vals)}
+\end{minted}
+\end{tcolorbox}
+
+
+\end{document}

@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{\PYGZsh{} 内置的zip函数允许使用for循环并行访问多个序列；}
+\PYG{c+c1}{\PYGZsh{} zip的输入参数是一个或多个序列，它的返回值是将这些序列并排的元素配对得到元组的列表；}
+\PYG{c+c1}{\PYGZsh{} 在Python3中zip返回的是一个可迭代对象，要想显示结果需要将其包含在list调用中。}
+
+\PYG{n}{l1} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{]}
+\PYG{n}{l1} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{]}
+\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{l1}\PYG{p}{,} \PYG{n}{l2}\PYG{p}{)}
+\PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{o}{\PYGZlt{}}\PYG{n+nb}{zip} \PYG{n+nb}{object} \PYG{n}{at} \PYG{l+m+mh}{0x02623C8}\PYG{o}{\PYGZgt{}}
+\PYG{n+nb}{list}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{l1}\PYG{p}{,}\PYG{n}{l2}\PYG{p}{))}
+\PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{),(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{),(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{),(}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{)]}
+
+\PYG{k}{for} \PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{l1}\PYG{p}{,}\PYG{n}{l2}\PYG{p}{):}
+    \PYG{k}{print}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{n}{x}\PYG{o}{+}\PYG{n}{y}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} 使用zip构造字典 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} for循环}
+\PYG{n}{keys} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}spam\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}eggs\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}toast\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{vals} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{]}
+\PYG{n}{D1}\PYG{o}{=}\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{k}{for} \PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{v}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{keys}\PYG{p}{,} \PYG{n}{vals}\PYG{p}{):}
+    \PYG{n}{D1}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]} \PYG{o}{=} \PYG{n}{v}
+
+\PYG{c+c1}{\PYGZsh{} 使用zip构造字典 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} 字典推导}
+\PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:} \PYG{n}{v} \PYG{k}{for} \PYG{p}{(}\PYG{n}{k}\PYG{p}{,} \PYG{n}{v}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{keys}\PYG{p}{,} \PYG{n}{vals}\PYG{p}{)\PYGZcb{}}
+\end{Verbatim}

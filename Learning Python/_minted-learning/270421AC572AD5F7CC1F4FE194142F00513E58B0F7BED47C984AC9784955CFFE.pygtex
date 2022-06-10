@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{\PYGZsh{} 1.字符串格式化\PYGZhy{}\PYGZhy{}千分位分隔语法}
+\PYG{l+s+s1}{\PYGZsq{}\PYGZob{}:,.2f\PYGZcb{}\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{l+m+mf}{1314.256}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} 2.将列表转化为字符串}
+\PYG{n}{str1} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{list1}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} 3.更改字符串}
+\PYG{n}{str1} \PYG{o}{=} \PYG{n}{str1}\PYG{o}{.}\PYG{n}{replace}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}mm\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}xx\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}
