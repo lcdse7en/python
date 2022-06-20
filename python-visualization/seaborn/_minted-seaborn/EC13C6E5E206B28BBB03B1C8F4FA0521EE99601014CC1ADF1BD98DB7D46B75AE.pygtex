@@ -1,4 +1,5 @@
 \begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
 pip3 install scipy
 pip3 install seaborn
+pip3 install matplotlib
 \end{Verbatim}

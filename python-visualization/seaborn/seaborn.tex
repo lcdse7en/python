@@ -37,6 +37,7 @@
                framesep=2mm]{bash}
 pip3 install scipy
 pip3 install seaborn
+pip3 install matplotlib
 \end{minted}
 \end{tcolorbox}
 
@@ -91,7 +92,7 @@ np.set_printoptions(precision=2)
 men = num*ratio
 women = num*(1-ratio)
 
-# 删除重复数据
+# 删重复数据
 df3 = df2.drop_duplicates(['类别'])
 
 # 将类别转成列表

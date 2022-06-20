@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Debian) (preloaded format=xelatex 2021.9.28)  8 JUN 2022 21:49
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Debian) (preloaded format=xelatex 2021.9.28)  12 JUN 2022 10:32
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1675,7 +1675,12 @@ your preamble.
 
 (./_minted-seaborn/default-pyg-prefix.pygstyle)
 (./_minted-seaborn/default.pygstyle)
-(./_minted-seaborn/FB3DBFBBF590E66D32077BF92ECF4F08EE99601014CC1ADF1BD98DB7D46B
+runsystem(pygmentize -l bash -f latex -P commandprefix=PYG -F tokenmerge -P mat
+hescape=True -F gobble:n=0 -o _minted-seaborn/EC13C6E5E206B28BBB03B1C8F4FA0521E
+E99601014CC1ADF1BD98DB7D46B75AE.pygtex seaborn.pyg)...executed.
+
+
+(./_minted-seaborn/EC13C6E5E206B28BBB03B1C8F4FA0521EE99601014CC1ADF1BD98DB7D46B
 75AE.pygtex
 
 Package fontspec Warning: Font "FandolFang-Regular" does not contain requested
@@ -1712,22 +1717,18 @@ LaTeX Font Warning: Font shape `TU/FandolFang-Regular(0)/m/it' undefined
 ) [2]
 \openout6 = `seaborn.pyg'.
 
-runsystem(pygmentize -l python -f latex -P commandprefix=PYG -F tokenmerge -P m
-athescape=True -F gobble:n=0 -o _minted-seaborn/595463DB53BA465B904310FDCDA09E3
-9415BB0CECFD38C499C0CD366409711DB.pygtex seaborn.pyg)...executed.
-
 
 (./_minted-seaborn/595463DB53BA465B904310FDCDA09E39415BB0CECFD38C499C0CD3664097
 11DB.pygtex)
-runsystem(rm _minted-seaborn/01795677EE02340D0D8E03C9483B59A1415BB0CECFD38C499C
-0CD366409711DB.pygtex)...executed.
+runsystem(rm _minted-seaborn/FB3DBFBBF590E66D32077BF92ECF4F08EE99601014CC1ADF1B
+D98DB7D46B75AE.pygtex)...executed.
 
  [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 142.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 142.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 143.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 143.
  (./seaborn.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 142.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 142.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 143.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 143.
 Package rerunfilecheck Info: File `seaborn.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1736,13 +1737,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 runsystem(rm seaborn.pyg)...executed.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 143.
  ) 
 Here is how much of TeX's memory you used:
- 46880 strings out of 481201
- 1127415 string characters out of 5920207
+ 46881 strings out of 481201
+ 1127434 string characters out of 5920207
  1565436 words of memory out of 5000000
- 63114 multiletter control sequences out of 15000+600000
+ 63115 multiletter control sequences out of 15000+600000
  535608 words of font info for 50 fonts, out of 8000000 for 9000
  286 hyphenation exceptions out of 8191
  68i,6n,98p,945b,689s stack positions out of 5000i,500n,10000p,200000b,80000s
